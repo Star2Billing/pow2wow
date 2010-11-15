@@ -1,0 +1,20 @@
+
+
+Update in py-asterisk :
+------------------------
+
+    in Manager.py
+    
+    if (line_nr == 1 or line_nr == 2 ) and line.startswith('ActionID: '):
+                # Asterisk is a pile of shite!!!!!!!!!
+                # Areski add : or line_nr == 2
+                packet.ActionID = line[10:]
+
+
+
+
+Use py-asterisk in command line :
+----------------------------------
+    ./py-asterisk action "Command" "core show channels"
+
+

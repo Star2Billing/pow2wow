@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+'''
+Recover a channel lost in asterisk. Usage:
+
+    asterisk-recover <lost_channel> <context> <exten> <priority>
+
+'''
+
+__author__  = 'David Wilson'
+__id__      = '$Id: asterisk-test 3 2010-09-03 01:41:42Z dw $'
+
+import sys
+from Asterisk.Config import Config
+from Asterisk.Manager import Manager
+
+
+
+
+def main(argv):
+    try :
+        manager = Manager(*Config().get_connection())
+        statii = manager.Command("meetme list concise")
+    except:
+        print "There is an error!"
+    else:
+        print statii
+    
+
+
+if __name__ == '__main__':
+    main(sys.argv[1:])

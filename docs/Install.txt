@@ -1,0 +1,62 @@
+
+Install dependencies :
+- django 1.1
+- yum install sqlite-devel.x86_64 sqlite.x86_6
+- easy_install pysqlite
+- yum install mod_python
+
+
+test with :
+- python manage.py runserver 0.0.0.0:8000
+
+
+********************************************************* 
+You must have an account in /etc/asterisk/manager.conf
+similar to this:
+
+[general]
+enabled = yes
+...
+...
+
+[meetmeuser]
+secret = meetmepw
+displayconnects = no
+read = system,call,log,verbose,command,agent,user,originate
+write = system,call,log,verbose,command,agent,user,originate
+
+
+
+configure your extensions.conf
+
+[meetme_context]
+exten => _X.,1,NoOp(Start Conference)
+;exten => _X.,n(record),Set(MEETME_RECORDINGFILE=/var/spool/asterisk/meetme/conference_recording-${EPOCH}-${USER});
+;exten => _X.,n,MeetMe(${EXTEN},rdTMc) ;Make new Room and record call. 
+exten => _X.,n,MeetMe(${EXTEN},dTMc) ;Make new Room
+exten => _X.,n,Hangup()
+
+
+copy py-asterisk.conf to /etc/asterisk/
+configure it accordingly to your manager.conf settings.
+
+
+
+Create Super User 
+********************************************************* 
+manage.py createsuperuser --username=admin --email=areski@gmail.com
+
+
+Set Permission on Sqlite DB
+********************************************************* 
+chmod -R 777 databases 
+
+
+Add Admin Media path
+********************************************************* 
+cd ressources
+ln -s /usr/lib/pymodules/python2.6/django/contrib/admin/media/ admin
+edit settings.py
+ADMIN_MEDIA_PREFIX = '/resources/admin/'
+
+

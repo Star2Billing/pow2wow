@@ -1,0 +1,69 @@
+#!/usr/bin/env python
+
+'''
+Dump events from the Manager interface to stdout.
+'''
+
+__author__  = 'David Wilson'
+__id__      = '$Id$'
+
+import sys, time, socket
+from Asterisk.Config import Config
+from Asterisk.Manager import CoreManager
+import Asterisk.Manager, Asterisk.Util
+
+
+
+
+class MyManager(CoreManager):
+    '''
+    Print events to stdout.
+    '''
+
+    def on_Event(self, event):
+        Asterisk.Util.dump_packet(event)
+
+
+
+
+def main2():
+    manager = MyManager(*Config().get_connection())
+
+    try:
+        print '#', repr(manager)
+        print
+        manager.serve_forever()
+
+    except KeyboardInterrupt, e:
+        raise SystemExit
+
+
+
+def main(argv):
+    max_reconnects = 100
+    reconnect_delay = 2
+
+    while True:
+        try:
+            main2()
+
+        except Asterisk.Manager.GoneAwayError, e:
+            print '#', str(e)
+
+
+        except socket.error, e:
+            print
+            print '# Connect error:', e[1]
+            reconnect_delay *= 2
+
+        print '# Waiting', reconnect_delay, 'seconds before reconnect.'
+        print '# Will try', max_reconnects, 'more times before exit..'
+
+        max_reconnects -= 1
+        time.sleep(reconnect_delay)
+        print '# Reconnecting...'
+
+
+
+if __name__ == '__main__':
+    main(sys.argv[1:])

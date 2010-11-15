@@ -1,0 +1,15 @@
+; vim: syntax=dosini
+; $Id$
+
+; py-Asterisk sample configuration file.
+
+
+[py-asterisk]
+default connection=my-pbx
+
+
+[connection: my-pbx]
+hostname=pbx.lan.yourcompany.net
+port=5038
+username=admin
+secret=letmein

@@ -1,0 +1,54 @@
+Concise MeetMe List output
+    [0] => Caller #
+    [1] => Callerid Number
+    [2] => Callerid Name
+    [3] => Channel:
+    [4] => 1 for Admin, NULL for User
+    [5] => 1 for Monitor, Null otherwise
+    [6] => 1 for Muted, NULL for UnMuted
+    [7] => 1 for Resquests Floor, 0 otherwise
+    [8] => 1 for 'Is Talking', 0 otherwise
+    [9] => Call duration
+    
+
+meetme list 5000 concise
+1!aresksip!33333333!SIP/areski-00000000!!!!!-1!00:12:34
+2!aresksip!33333333!SIP/areski-00000002!!!!!-1!00:08:07
+
+talking 
+1!aresksip!33333333!SIP/areski-00000002!!!!!1!00:00:13
+
+meetme list concise
+1000!1!0!00:11:10!1!0
+5000!2!0!00:15:43!1!0
+
+
+
+[Syntax]
+MeetMeAdmin(confno,command[,user])
+
+[Arguments]
+command
+    e: Eject last user that joined.
+    E: Extend conference end time, if scheduled.
+    k: Kick one user out of conference.
+    K: Kick all users out of conference.
+    l: Unlock conference.
+    L: Lock conference.
+    m: Unmute one user.
+    M: Mute one user.
+    n: Unmute all users in the conference.
+    N: Mute all non-admin users in the conference.
+    r: Reset one user's volume settings.
+    R: Reset all users volume settings.
+    s: Lower entire conference speaking volume.
+    S: Raise entire conference speaking volume.
+    t: Lower one user's talk volume.
+    T: Raise one user's talk volume.
+    u: Lower one user's listen volume.
+    U: Raise one user's listen volume.
+    v: Lower entire conference listening volume.
+    V: Raise entire conference listening volume.
+
+
+

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+
+{% block subtitle %}
+    <h2 id="demoTitle" class="demoHeaders">Member(s) in Conference  # {{ confno }}</h2>
+{% endblock subtitle %}
+
+
+{% block content %}
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $("#member_refresh").load('/conf/{{ confno }}/member_refresh/');
+          var refreshId = setInterval(function() {
+            $("#member_refresh").load('/conf/{{ confno }}/member_refresh/');
+          }, 2500);
+      });
+    </script>
+
+   <div id="main">
+    <div id="member_refresh">
+        
+    </div>
+   </div>
+
+   
+   <div style="clear:both; height: 50px;"></div>
+
+   
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <div style="margin: 10px; padding: 10px;  width: 350px; height: 130px; margin-left: 70%;" class="ui-widget ui-widget-content ui-corner-all">
+        <div style="float : left; width: 50%;">
+            <h3>GENERAL</h3>
+            Participants online : {{ number_conf_member }}
+        </div>
+        {% if user.is_authenticated %}
+        <div style="float : left; width: 50%; margin-top: 20; text-align: right;">
+            <button id="kickall" class="ui-button ui-button-text-icons ui-widget ui-state-default ui-corner-all">
+                <span class="ui-button-icon-primary ui-icon ui-icon-gear"></span>
+                <span class="ui-button-text">Close Conference</span>
+            </button>
+        </div>
+        <div style="clear:both; height: 5px;"></div>
+        <hr/>
+
+        <center>
+        <form action="" method="post">
+            <table>
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="Call and Invite" class="ui-state-default ui-corner-all">
+        </form>
+        </center>
+        {% endif %}
+    </div>
+
+
+    
+
+
+
+{% endblock %}

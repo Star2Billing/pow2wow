@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <title>Conference Interface</title>
+    <link type="text/css"
+        href="{{MEDIA_URL}}css/cupertino/jquery-ui-1.7.2.custom.css"
+        rel="stylesheet" />
+    <script type="text/javascript"
+        src="{{MEDIA_URL}}js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript"
+        src="{{MEDIA_URL}}js/jquery-ui-1.7.2.custom.min.js"></script>
+    
+    <script type="text/javascript">
+      $(function(){
+        //hover states on the static widgets
+        $('button').hover(
+            function() { $(this).addClass('ui-state-hover'); },
+            function() { $(this).removeClass('ui-state-hover'); }
+        );
+        $('#kickall').click(function(){
+          action = "kickall"
+          $.post('/conf/{{ confno }}/' + action + '/');
+        });
+        $('#buttonlogin').click(function(){
+          $("#requestlogin").animate({ height: 'show', opacity: 'show' }, 'slow');
+        });
+        $('#buttonlogout').click(function(){
+          $('#logout').submit();
+        });
+      });
+    </script>
+
+
+ 
+    <style type="text/css">
+      body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 50px;}
+      .demoHeaders { margin-top: 2em; }
+      #dialog_link {padding: .4em 1em .4em 20px;
+         text-decoration:none; position: relative;}
+      #dialog_link span.ui-icon {
+         margin: 0 5px 0 0;position: absolute;
+         left: .2em;top: 50%;margin-top: -8px;}
+      ul#icons {margin: 0; padding: 0;}
+      ul#icons li {
+         margin: 2px; position: relative; padding: 4px 0;
+         cursor: pointer; float: left;  list-style: none;}
+      ul#icons span.ui-icon {float: left; margin: 0 4px;}
+
+      button {padding: .4em 1.2em .6em 20px;
+         text-decoration:none; position: relative;}
+	  button span.ui-icon {
+         margin: 0 5px 0 0;position: absolute;
+         left: -20px;top: 50%;margin-top: -8px;}
+    </style>
+  </head>
+
+  <body>
+
+  {% block login %}
+  {% endblock login %}
+
+  {% block subtitle %}
+
+  {% endblock subtitle %}
+
+  {% block content %}
+            
+  {% endblock %}
+
+
+
+
+
+  </body>
+</html>

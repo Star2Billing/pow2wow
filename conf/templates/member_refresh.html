@@ -1,0 +1,62 @@
+
+        {% if conf_member %}
+          {% for s in conf_member %}
+            
+            <!-- ui-member -->
+            <div id="{{ s.callerno }}" style="margin: 10px; padding: 10px;  width: 280px; height: 140px; float: left;" class="ui-widget ui-widget-content ui-corner-all">
+
+                <div style="padding: 10px; width: 65px; float: left; " title=".ui-icon-grip-diagonal-se" class="ui-state-default ui-corner-all">
+                    <img src="{{MEDIA_URL}}icons/05_phonebook_64.png"/>
+                </div>
+                 <div style="padding: 10px; width: 50px; float: left; margin-left: 20px;">
+                    {{ s.callduration }}
+                </div>
+                {% ifequal s.istalking "1" %}
+                <div style="padding: 10px; width: 50px; float: right; margin-right: 20px;">
+                    <img src="{{MEDIA_URL}}icons/speaker-icon.png"/>
+                </div>
+                {% endifequal %}
+                
+                <div style="clear:both; height:30px;">
+                     Phone# : {{ s.cid_number }}
+                </div>
+                {% if user.is_authenticated %}
+                <div style=clear:both;">
+                    {% ifequal s.muted "1" %}
+                        <a href="#" id="dialog_link" class="ui-state-default ui-corner-all">
+                          <span id="unmute" class="ui-icon ui-icon-volume-on"></span>Unmute user {{ s.callerno }}
+                        </a>
+                    {% else %}
+                        <a href="#" id="dialog_link" class="ui-state-default ui-corner-all">
+                          <span id="mute" class="ui-icon ui-icon-volume-off"></span>Mute user {{ s.callerno }}
+                        </a>
+                    {% endifequal %}
+                    &nbsp;
+                    <a href="#" id="dialog_link" class="ui-state-default ui-corner-all">
+                      <span id="kick" class="ui-icon ui-icon-trash"></span>Eject user {{ s.callerno }}
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+
+          {% endfor %}
+        {% else %}
+          No Member found
+        {% endif %}
+
+
+        <script type="text/javascript">
+      $(function(){
+        // Dialog Link
+        $('#dialog_link, ul#icons li').click(function(){
+          action = $(this).find("span").attr('id')
+          usernumber = $(this).parents('div:eq(1)').attr('id');
+          $.post('/conf/{{ confno }}/' + action + '/' + usernumber + '/');
+        });
+        //hover states on the static widgets
+        $('#dialog_link, ul#icons li').hover(
+          function() { $(this).addClass('ui-state-hover'); },
+          function() { $(this).removeClass('ui-state-hover'); }
+        );
+      });
+    </script>

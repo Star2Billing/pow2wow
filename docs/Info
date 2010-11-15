@@ -1,0 +1,61 @@
+
+
+Monitor all the active conference room :
+*****************************************
+    
+    http://localhost:8000/conf/
+
+    - Login option is available to become an Admin (Moderator)
+        
+
+
+Add your conf number to the url to monitor a conference :
+**********************************************************    
+
+    example with 5000 as conference Number
+
+    http://localhost:8000/conf/5000/
+
+
+    Action :
+        http://localhost:8000/conf/5000/kickall
+        
+    Mute an user :
+        http://localhost:8000/conf/5000/mute/1
+    
+    Unmute an user :
+        http://localhost:8000/conf/5000/unmute/1
+    
+    Kick an user :
+        http://localhost:8000/conf/5000/kick/1
+
+
+Admin interface :
+******************
+
+    On this interface you can add new moderator
+    
+    http://localhost:8000/admin/
+
+
+2 type of users :
+******************
+
+    - Admin : Have rights to any action : Kick, Mute, Unmute, stop conference, Invite User.
+    
+    - Visitor : Visitor won't be able to run any action and the options won't be displayer.
+    
+
+
+Configure the Invite Route to use, SIP / IAX and the trunk :
+*************************************************************
+
+    Edit /usr/share/django_app/pow2wow/settings.py
+
+    # INVITE SETTINGS
+    # Set how Asterisk will invite new members
+    INVITE_ROUTE = "SIP/areski/";
+
+
+
+

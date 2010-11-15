@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block login %}
+  <div id="openlogin" style="text-align: right;">
+    
+    {% if user.is_authenticated %}
+    <button id="buttonlogout" class="ui-button ui-button-icon-only ui-widget ui-state-default ui-corner-all" title="Button">
+        <span class="ui-button-icon-primary ui-icon ui-icon-unlocked"></span>
+        <span class="ui-button-text">Logout</span>
+    </button>
+    <form id="logout" action="/conf/" method="post">
+      <input type="hidden" name="action" value="logout" />
+    </form>
+
+    {% else %}
+    <button id="buttonlogin" class="ui-button ui-button-icon-only ui-widget ui-state-default ui-corner-all" title="Button">
+        <span class="ui-button-icon-primary ui-icon ui-icon-locked"></span>
+        <span class="ui-button-text">Login</span>
+    </button>
+    {% endif %}
+
+  </div>
+
+   <div id="requestlogin" style="margin: 10px; padding: 10px;  width: 400px; height: 30px; margin-left: 70%; display: none;" class="ui-widget ui-widget-content ui-corner-all">
+     <form action="/conf/" method="post">
+         {% for field in loginform %}
+            <div class="fieldWrapper" style="float : left; margin: 5px;">
+                {{ field.errors }}
+                {{ field.label_tag }}: {{ field }}
+            </div>
+        {% endfor %}
+         <input type="submit" value="login" class="ui-state-default ui-corner-all" style="margin: 5px;">
+     </form>
+    </div>
+
+{% if errorlogin %}
+    <div class="ui-widget">
+        <div class="ui-state-error ui-corner-all" style="margin: 10px; padding: 0pt 0.7em;">
+            <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span>
+            <strong>Alert:</strong> Error login !</p>
+        </div>
+    </div>
+{% endif %}
+
+
+{% endblock login %}
+
+
+{% block content %}
+   <div id="main">
+    <div>
+      <h3><a href="#">Conference running :</a></h3>
+      <div>
+        {% if conf_list %}
+          {% for s in conf_list %}
+            <p style="border-top:1px dashed #f00; margin-top:1em; padding-top:1em font 80% 'Trebuchet MS', sans-serif;">
+              #{{ s.confno }} - Members : {{ s.member }} - <a href="{{s.confno}}/">Conference #{{ s.confno }}</a>
+            </p>
+          {% endfor %}
+        {% else %}
+          No Conference found
+        {% endif %}
+      </div>
+    </div>
+   </div>
+{% endblock %}
+
+
