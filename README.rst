@@ -69,6 +69,12 @@ Configure the Invite Route to use, SIP / IAX and the trunk
     INVITE_ROUTE = "SIP/areski/";
 
 
+Screenshot
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. image:: https://github.com/Star2Billing/pow2wow/raw/master/pow2wow/docs/screenshot.png
+
+
 Coding Conventions
 ------------------
 
