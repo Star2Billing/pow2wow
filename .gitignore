@@ -1,0 +1,11 @@
+*.pyc
+*dilla*
+*.db
+*nbproject*
+*devserver*
+test.db
+env
+distribute-*
+build*
+dist*
+.idea
