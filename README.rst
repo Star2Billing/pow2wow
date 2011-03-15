@@ -1,17 +1,17 @@
 
 
-.. image:: https://github.com/Star2Billing/cdr-stats/raw/master/cdr_stats/resources/logo/icon_600.png
+.. image:: https://github.com/Star2Billing/pow2wow/raw/master/pow2wow/resources/logo/pow2wow.png
 
-Pow2Wow is a Conference Monitoring tool for Asterisk/Freeswitch. It allows you to 
-interrogate the conferencing server and see who is actually present into the conference room.
-Some basics features, such as Mute, UnMute, Kick, Invite or Talk, are available.
+Pow2Wow is a Conference Monitoring tool for Asterisk/Freeswitch. It allows you to
+interrogate the conferencing server and see who is actually present in the conference room.
+Some basic features, such as Mute, UnMute, Kick, Invite or Talk, are available.
 
-It is based on the Django Python Framework which enables the building 
-of clean, maintainable web applications, and encourages rapid 
-development with clean and pragmatic design.
+It is based on the Django Python Framework which enables the building
+of clean, maintainable web applications, and encourages rapid
+development with a clean and pragmatic design.
 
-Star2Billing S.L. is the company behind the development of Pow2Wow, and 
-was originally formed to replace the project WebMeetMe with a more flexible and suitable solution. 
+Star2Billing S.L. is the company behind the development of Pow2Wow, and
+was originally formed to replace the project WebMeetMe with a more flexible and suitable solution.
 Professional support for  installation and consultancy services are available
 
 
@@ -27,7 +27,7 @@ Monitor all the active conference room
 
 
 Add your conf number to the url to monitor a conference
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Usage : http://localhost:8000/conf/5000/    
 
@@ -52,7 +52,7 @@ Admin interface
 
 
 2 type of users
-~~~~~~~~~~~~~~-
+~~~~~~~~~~~~~~~
 
     - Admin : Have rights to any action : Kick, Mute, Unmute, stop conference, Invite User.
     
